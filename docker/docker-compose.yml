@@ -1,0 +1,51 @@
+version: '3.5'
+
+services:
+  django: &django
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+    command: django-admin runserver 0.0.0.0:8082
+    container_name: be_rich
+    volumes:
+      - ..:/srv/app
+      - app-www:/srv/www
+    ports:
+      - "127.0.0.1:8082:8082"
+
+    environment:
+      DJANGO_DATABASE: "pgsql://richman:pass@postgres/berich"
+      DJANGO_STATIC_ROOT: "/srv/www/static"
+      SECRET_KEY: "+bm^3jl=+siiv6ybqbf330igkh+z-(__1%vj+^o^iwuf-(*ot4"
+      PYTHONUNBUFFERED: "1"
+      PYTHONPATH: "/srv/app"
+      PYTHONDONTWRITEBYTECODE: "1"
+      DJANGO_SETTINGS_MODULE: "backend.be_rich.settings"
+
+    depends_on:
+      - postgres
+
+  my_app:
+    <<: *django
+
+  postgres:
+    build:
+      context: ../
+      dockerfile: docker/db/Dockerfile
+    ports:
+      - "127.0.0.1:5432:5432"
+    environment:
+      - "DB_USER=richman"
+      - "DB_PASSWORD=pass"
+      - "DB_DATABASE=berich"
+      - "POSTGRES_PASSWORD=password"
+    networks:
+      default:
+        aliases:
+          - 'postgres'
+
+networks:
+  default:
+
+volumes:
+  app-www:
