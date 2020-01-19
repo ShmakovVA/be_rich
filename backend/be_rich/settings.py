@@ -14,6 +14,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=[])
 
+SYSTEM_FEE = 0.05  # in percents
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',

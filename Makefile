@@ -64,5 +64,11 @@ migrate:
 superuser:
 	$(COMPOSE) run --rm my_app ./manage.py createsuperuser
 
-build-init: webpack-dep migrations migrate superuser
+load-fixtures:
+	$(COMPOSE) run --rm my_app ./manage.py loaddata ./backend/transactions/fixtures/fixtures.json
+
+load-test-fixtures:
+	$(COMPOSE) run --rm my_app ./manage.py loaddata ./backend/transactions/fixtures/test_fixtures.json
+
+build-init: webpack-dep migrations migrate superuser load-fixtures
 	$(COMPOSE) up my_app

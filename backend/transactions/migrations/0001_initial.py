@@ -45,7 +45,7 @@ class Migration(migrations.Migration):
                 ('amount', models.FloatField()),
                 ('message', models.CharField(max_length=255)),
                 ('registered_at', models.DateTimeField(auto_now_add=True)),
-                ('status', models.PositiveSmallIntegerField(choices=[(0, backend.transactions.enums.TransactionStatuses(0)), (1, backend.transactions.enums.TransactionStatuses(1)), (2, backend.transactions.enums.TransactionStatuses(2))], default=backend.transactions.enums.TransactionStatuses(0))),
+                ('status', models.PositiveSmallIntegerField(choices=[(0, backend.transactions.enums.TransactionStatuses(0)), (1, backend.transactions.enums.TransactionStatuses(1)), (2, backend.transactions.enums.TransactionStatuses(2))], default=backend.transactions.enums.TransactionStatuses(1))),
                 ('fee', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='transactions.Transaction')),
                 ('from_wallet', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='transaction_from', to='transactions.Wallet')),
                 ('to_wallet', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='transaction_to', to='transactions.Wallet')),
