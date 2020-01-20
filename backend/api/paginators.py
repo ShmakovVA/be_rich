@@ -2,6 +2,7 @@ from collections import OrderedDict
 
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.response import Response
+from rest_framework.status import HTTP_200_OK
 
 
 class LimitedOffsetPaginator(LimitOffsetPagination):
@@ -40,4 +41,4 @@ class LimitedOffsetPaginator(LimitOffsetPagination):
             ('previous', self.get_previous_link()),
             ('results', data),
             ('truncated', self.truncated),
-        ]))
+        ]), status=HTTP_200_OK)

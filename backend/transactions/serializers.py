@@ -30,16 +30,16 @@ class AccountSerializer(serializers.ModelSerializer):
 class WalletSerializer(serializers.ModelSerializer):
     class Meta:
         model = Wallet
-        fields = '__all__'
+        fields = ('account', 'money', 'currency_', 'status', 'wallet_id')
 
     account = AccountSerializer()
     status = serializers.SerializerMethodField()
-    currency = serializers.SerializerMethodField()
+    currency_ = serializers.SerializerMethodField()
 
     def get_status(self, obj):
         return AccountStatuses.name(obj.status)
 
-    def get_currency(self, obj):
+    def get_currency_(self, obj):
         return Currencies.name(obj.currency)
 
 

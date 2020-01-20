@@ -11,6 +11,7 @@ from backend.transactions.enums import (
     AccountStatuses
 )
 from backend.transactions.exceptions import NotEnoughMoneyError
+from backend.transactions.models.transaction import Transaction
 from backend.transactions.models.wallet import Wallet
 
 logger = logging.getLogger(__name__)
@@ -53,7 +54,7 @@ class Account(models.Model):
                            f'{wallet_id_from} doesn`t exist!')
                 raise
             else:
-                fee = None
+                transaction = fee = None
                 if self == reciever_wallet.account:  # no fee
                     fee_amount = 0.0
                 else:
@@ -67,11 +68,12 @@ class Account(models.Model):
                         fee.save()
 
                 if sender_wallet.money >= amount + fee_amount:
-                    Transaction(from_wallet=sender_wallet,
-                                to_wallet=reciever_wallet,
-                                fee=fee,
-                                message=message,
-                                amount=amount).save()
+                    transaction = Transaction(from_wallet=sender_wallet,
+                                              to_wallet=reciever_wallet,
+                                              fee=fee,
+                                              message=message,
+                                              amount=amount)
+                    transaction.save()
                 else:
                     error_message = f'You have not enough money in ' \
                                     f'{wallet_id_from}.'
@@ -84,6 +86,7 @@ class Account(models.Model):
             Wallet.objects.bulk_update([sender_wallet,
                                         reciever_wallet,
                                         system_wallet], fields=['money'])
+            return transaction
 
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):

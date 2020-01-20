@@ -1,6 +1,6 @@
 import os
 
-from environ import Env, Path
+from environ import Env
 
 env = Env()
 
@@ -108,6 +108,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+MAX_TRANSACTION_AMOUNT = 1000
 
 SITE_ID = 1
 

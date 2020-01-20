@@ -20,59 +20,38 @@ const Authentication = () => {
           password: password
         })
         .then(response => {
-          if (response.status !== 200) {
-            this.setState({email: ''})
-            this.setState({password: ''})
-            console.log(response.errors)
-          }
           localStorage.setItem('token', response.data.key)
+          alert(`You are logged in now ${email}!`)
         })
         .catch(exception => {
-          console.log(exception)
+          setEmail('')
+          setPassword('')
+          alert('Wrong credentials, try again!')
         })
     } else {
       axios
         .post('../api/rest-auth/register/', {
           username: email,
+          email: email,
           password1: password,
           password2: password
         })
         .then(response => {
-          if (response.status !== 200) {
-            console.log(response.errors)
-          }
+          alert('You was registered, try to log in now !')
         })
         .catch(exception => {
-          console.log(exception)
+          alert('You haven\'t been registered, try again later !')
         })
     }
-    //
-    // const token = 'Token '.concat(localStorage.getItem('token'))
-    // console.log(token)
-    // axios.get('../api/wallets/', {
-    //     params: {
-    //         filter: ''
-    //     },
-    //     headers: {Authorization: token}
-    // }).then(response => {
-    //     if (response.status !== 200) {
-    //         console.log(response)
-    //     }
-    //     console.log(response)
-    // }).catch(exception => {
-    //     console.log(exception)
-    // })
-    //
-    // console.log('data', email, password)
   }
 
   useEffect(() => {}, [])
 
   return (
-    <div className="auth-page">
+    <div className="auth-page bg-secondary">
       <div className="container page">
         <div className="row">
-          <div className="col-md-6 offset-md-3 col-xs-3">
+          <div className="col-md-6 col-xs-3">
             <h1 className="text-xs-center">{getUrl()}</h1>
             <p className="text-xs-center">
               <Link to="register">Need an account?</Link>
@@ -81,7 +60,7 @@ const Authentication = () => {
               <fieldset>
                 <fieldset className="form-group">
                   <input
-                    type="text"
+                    type="email"
                     className="form-control form-control-lg"
                     placeholder="Email"
                     value={email}
@@ -98,7 +77,7 @@ const Authentication = () => {
                   />
                 </fieldset>
                 <button className="btn btn-lg btn-primary pull-xs-right">
-                  Sign in
+                  {getUrl()}
                 </button>
               </fieldset>
             </form>

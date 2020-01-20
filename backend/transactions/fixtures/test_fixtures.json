@@ -1,173 +1,190 @@
-[{
-  "model": "transactions.wallet",
-  "pk": 1,
-  "fields": {
-    "status": 0,
-    "account": 1,
-    "currency": 0,
-    "money": 100.0,
-    "wallet_id": "28ca0e6e5e5f257e48df4bf0bcc53482c8c6dc03"
+[
+  {
+    "model": "transactions.wallet",
+    "pk": 1,
+    "fields": {
+      "status": 0,
+      "account": 1,
+      "currency": 0,
+      "money": 100.0,
+      "wallet_id": "28ca0e6e5e5f257e48df4bf0bcc53482c8c6dc03"
+    }
+  },
+  {
+    "model": "transactions.wallet",
+    "pk": 2,
+    "fields": {
+      "status": 0,
+      "account": 1,
+      "currency": 1,
+      "money": 0.0,
+      "wallet_id": "b2d1a266ff729c38062c410eee0cee8c9ccfecb8"
+    }
+  },
+  {
+    "model": "transactions.wallet",
+    "pk": 3,
+    "fields": {
+      "status": 0,
+      "account": 1,
+      "currency": 2,
+      "money": 0.0,
+      "wallet_id": "ff71df8429ee055933796b7c7fe1602f0f94b8db"
+    }
+  },
+  {
+    "model": "transactions.wallet",
+    "pk": 4,
+    "fields": {
+      "status": 0,
+      "account": 2,
+      "currency": 0,
+      "money": 100.0,
+      "wallet_id": "3d68400efd04f7558b98d4722ad362f57a0c1b83"
+    }
+  },
+  {
+    "model": "transactions.wallet",
+    "pk": 5,
+    "fields": {
+      "status": 0,
+      "account": 2,
+      "currency": 1,
+      "money": 0.0,
+      "wallet_id": "22e9e85fca872f1d86de03dc5d25086e7dd3493e"
+    }
+  },
+  {
+    "model": "transactions.wallet",
+    "pk": 6,
+    "fields": {
+      "status": 0,
+      "account": 2,
+      "currency": 2,
+      "money": 0.0,
+      "wallet_id": "c2095e346cd6db82bb1ff02f43970079d93175ed"
+    }
+  },
+  {
+    "model": "transactions.wallet",
+    "pk": 7,
+    "fields": {
+      "status": 0,
+      "account": 3,
+      "currency": 0,
+      "money": 100.0,
+      "wallet_id": "0d68400efd04f7558b98d4722ad362f57a0c1b83"
+    }
+  },
+  {
+    "model": "transactions.wallet",
+    "pk": 8,
+    "fields": {
+      "status": 0,
+      "account": 3,
+      "currency": 1,
+      "money": 0.0,
+      "wallet_id": "12e9e85fca872f1d86de03dc5d25086e7dd3493e"
+    }
+  },
+  {
+    "model": "transactions.wallet",
+    "pk": 9,
+    "fields": {
+      "status": 0,
+      "account": 3,
+      "currency": 2,
+      "money": 0.0,
+      "wallet_id": "22095e346cd6db82bb1ff02f43970079d93175ed"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$150000$fXg80UQvKf7U$7Bgfl4RQbvYKKHzCd0nHT5MZodRBielkJZIlr4Efmy4=",
+      "last_login": "2020-01-19T04:37:01.891Z",
+      "is_superuser": true,
+      "username": "root",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2020-01-19T04:36:43.310Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$150000$HS87BudhbhZ2$pMW0JBYr3a5oF6mrVFNPAULPG/s4qaBHhcPerz76rIk=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "user",
+      "first_name": "user",
+      "last_name": "user",
+      "email": "user@gmail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2020-01-19T05:18:47Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$150000$HS87BudhbhZ2$pMW0JBYr3a5oF6mrVFNPAULPG/s4qaBHhcPerz76rIk=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "user2",
+      "first_name": "user2",
+      "last_name": "user2",
+      "email": "user2@gmail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2020-01-19T05:18:47Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "transactions.account",
+    "pk": 1,
+    "fields": {
+      "status": 0,
+      "user": 1,
+      "registered": "2020-01-19T04:37:13.420Z"
+    }
+  },
+  {
+    "model": "transactions.account",
+    "pk": 2,
+    "fields": {
+      "status": 0,
+      "user": 2,
+      "registered": "2020-01-19T05:19:24.521Z"
+    }
+  },
+  {
+    "model": "transactions.account",
+    "pk": 3,
+    "fields": {
+      "status": 0,
+      "user": 3,
+      "registered": "2020-01-19T05:19:24.521Z"
+    }
+  },
+  {
+    "model": "authtoken.token",
+    "pk": "ed7aa7cd0c6d07cb83ebe80bdfb6d709d6f922a7",
+    "fields": {
+      "user": 1,
+      "created": "2020-01-19T04:37:23.384Z"
+    }
   }
-}, {
-  "model": "transactions.wallet",
-  "pk": 2,
-  "fields": {
-    "status": 0,
-    "account": 1,
-    "currency": 1,
-    "money": 0.0,
-    "wallet_id": "b2d1a266ff729c38062c410eee0cee8c9ccfecb8"
-  }
-}, {
-  "model": "transactions.wallet",
-  "pk": 3,
-  "fields": {
-    "status": 0,
-    "account": 1,
-    "currency": 2,
-    "money": 0.0,
-    "wallet_id": "ff71df8429ee055933796b7c7fe1602f0f94b8db"
-  }
-}, {
-  "model": "transactions.wallet",
-  "pk": 4,
-  "fields": {
-    "status": 0,
-    "account": 2,
-    "currency": 0,
-    "money": 100.0,
-    "wallet_id": "3d68400efd04f7558b98d4722ad362f57a0c1b83"
-  }
-}, {
-  "model": "transactions.wallet",
-  "pk": 5,
-  "fields": {
-    "status": 0,
-    "account": 2,
-    "currency": 1,
-    "money": 0.0,
-    "wallet_id": "22e9e85fca872f1d86de03dc5d25086e7dd3493e"
-  }
-}, {
-  "model": "transactions.wallet",
-  "pk": 6,
-  "fields": {
-    "status": 0,
-    "account": 2,
-    "currency": 2,
-    "money": 0.0,
-    "wallet_id": "c2095e346cd6db82bb1ff02f43970079d93175ed"
-  }
-}, {
-  "model": "transactions.wallet",
-  "pk": 7,
-  "fields": {
-    "status": 0,
-    "account": 3,
-    "currency": 0,
-    "money": 100.0,
-    "wallet_id": "0d68400efd04f7558b98d4722ad362f57a0c1b83"
-  }
-}, {
-  "model": "transactions.wallet",
-  "pk": 8,
-  "fields": {
-    "status": 0,
-    "account": 3,
-    "currency": 1,
-    "money": 0.0,
-    "wallet_id": "12e9e85fca872f1d86de03dc5d25086e7dd3493e"
-  }
-}, {
-  "model": "transactions.wallet",
-  "pk": 9,
-  "fields": {
-    "status": 0,
-    "account": 3,
-    "currency": 2,
-    "money": 0.0,
-    "wallet_id": "22095e346cd6db82bb1ff02f43970079d93175ed"
-  }
-}, {
-  "model": "auth.user",
-  "pk": 1,
-  "fields": {
-    "password": "pbkdf2_sha256$150000$fXg80UQvKf7U$7Bgfl4RQbvYKKHzCd0nHT5MZodRBielkJZIlr4Efmy4=",
-    "last_login": "2020-01-19T04:37:01.891Z",
-    "is_superuser": true,
-    "username": "root",
-    "first_name": "",
-    "last_name": "",
-    "email": "",
-    "is_staff": true,
-    "is_active": true,
-    "date_joined": "2020-01-19T04:36:43.310Z",
-    "groups": [],
-    "user_permissions": []
-  }
-}, {
-  "model": "auth.user",
-  "pk": 2,
-  "fields": {
-    "password": "pbkdf2_sha256$150000$HS87BudhbhZ2$pMW0JBYr3a5oF6mrVFNPAULPG/s4qaBHhcPerz76rIk=",
-    "last_login": null,
-    "is_superuser": false,
-    "username": "user",
-    "first_name": "user",
-    "last_name": "user",
-    "email": "user@gmail.com",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2020-01-19T05:18:47Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},{
-  "model": "auth.user",
-  "pk": 3,
-  "fields": {
-    "password": "pbkdf2_sha256$150000$HS87BudhbhZ2$pMW0JBYr3a5oF6mrVFNPAULPG/s4qaBHhcPerz76rIk=",
-    "last_login": null,
-    "is_superuser": false,
-    "username": "user2",
-    "first_name": "user2",
-    "last_name": "user2",
-    "email": "user2@gmail.com",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2020-01-19T05:18:47Z",
-    "groups": [],
-    "user_permissions": []
-  }
-}, {
-  "model": "transactions.account",
-  "pk": 1,
-  "fields": {
-    "status": 0,
-    "user": 1,
-    "registered": "2020-01-19T04:37:13.420Z"
-  }
-}, {
-  "model": "transactions.account",
-  "pk": 2,
-  "fields": {
-    "status": 0,
-    "user": 2,
-    "registered": "2020-01-19T05:19:24.521Z"
-  }
-}, {
-  "model": "transactions.account",
-  "pk": 3,
-  "fields": {
-    "status": 0,
-    "user": 3,
-    "registered": "2020-01-19T05:19:24.521Z"
-  }
-}, {
-  "model": "authtoken.token",
-  "pk": "ed7aa7cd0c6d07cb83ebe80bdfb6d709d6f922a7",
-  "fields": {
-    "user": 1,
-    "created": "2020-01-19T04:37:23.384Z"
-  }
-}]
+]
