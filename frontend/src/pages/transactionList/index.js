@@ -8,7 +8,7 @@ const TransactionList = () => {
     <div>
       <h1>Transactions</h1>
       <DataProvider
-        endpoint="../api/transactions/transactions"
+        endpoint="../api/transactions/"
         render={data => <Table data={data} />}
       />
     </div>

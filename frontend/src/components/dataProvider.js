@@ -9,24 +9,34 @@ class DataProvider extends Component {
   }
   state = {
     data: [],
+    token: localStorage.getItem('token'),
     loaded: false,
     placeholder: 'Loading...'
   }
 
   componentDidMount() {
-    console.log(this.props.endpoint)
-    axios(this.props.endpoint)
+    const token = 'Token '.concat(localStorage.getItem('token'))
+    if (!token) {
+      return {}
+    }
+    axios
+      .get(this.props.endpoint, {headers: {Authorization: token}})
       .then(response => {
         if (response.status !== 200) {
-          return this.setState({placeholder: 'Something went wrong'})
+          this.setState({placeholder: 'Something went wrong'})
         }
-        return response.data
+        let data = response.data.results
+        for (var i = 0; i < data.length; i++) {
+          data[i].from_wallet = data[i].from_wallet.wallet_id
+          data[i].to_wallet = data[i].to_wallet.wallet_id
+        }
+        return data
       })
       .then(data => this.setState({data: data, loaded: true}))
   }
 
   render() {
-    const {data, loaded, placeholder} = this.state
+    const {data, loaded, token, placeholder} = this.state
     return loaded ? this.props.render(data) : <p>{placeholder}</p>
   }
 }

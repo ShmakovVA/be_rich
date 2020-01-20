@@ -11,7 +11,7 @@ services:
       - ..:/srv/app
       - app-www:/srv/www
     ports:
-      - "127.0.0.1:8082:8082"
+      - "8082:8082"
 
     environment:
       DJANGO_DATABASE: "pgsql://richman:pass@postgres/berich"
@@ -33,7 +33,7 @@ services:
       context: ../
       dockerfile: docker/db/Dockerfile
     ports:
-      - "127.0.0.1:5432:5432"
+      - "5432:5432"
     environment:
       - "DB_USER=richman"
       - "DB_PASSWORD=pass"

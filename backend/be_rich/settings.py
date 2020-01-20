@@ -28,7 +28,11 @@ INSTALLED_APPS = [
     'backend.api',
     'frontend',
     'rest_framework',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'rest_auth',
 ]
 
 MIDDLEWARE = [
@@ -102,6 +106,10 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+SITE_ID = 1
 
 # Internationalization
 LANGUAGE_CODE = 'en-us'

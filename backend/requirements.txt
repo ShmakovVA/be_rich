@@ -4,3 +4,5 @@ django-environ==0.4.5
 djangorestframework==3.11.0
 psycopg2==2.8.4
 django-enumfield==2.0.1
+django-rest-auth==0.9.5
+django-allauth==0.39.1

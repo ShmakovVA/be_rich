@@ -8,7 +8,7 @@ const Table = ({data}) =>
   ) : (
     <div className="column">
       <h2 className="subtitle">
-        <span className='badge badge-info'>{data.length} items</span>
+        <span className="badge badge-info">{data.length} items</span>
       </h2>
       <table className="table is-striped">
         <thead>
