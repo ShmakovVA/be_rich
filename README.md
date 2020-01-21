@@ -80,3 +80,16 @@ building/debugging/running the project inside a Docker container
    The same reason as above 
    (But usually I do strong test coverage for almost each 'pull request') 
    ```
+   
+4. Configurating for production
+    
+   ```
+   No reason to do it for a test prototype. Many DevOps activities there.
+   In my teams, we have DevOps guys for it :) 
+   ```
+   
+5. Sentry, Kibana, New Relic ...
+
+   ```
+   Kinda `Must have`-services, but It's too much, again... 
+   ```
