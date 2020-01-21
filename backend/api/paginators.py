@@ -7,8 +7,8 @@ from rest_framework.status import HTTP_200_OK
 
 class LimitedOffsetPaginator(LimitOffsetPagination):
     """
-    Paginator that "works" with large querysets of heavy instances by truncating
-    them into manageable size.
+    Paginator that "works" with large querysets of heavy instances by
+    truncating them into manageable size.
     """
     default_limit = 20
     truncate_size = 1000

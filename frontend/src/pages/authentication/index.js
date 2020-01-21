@@ -44,7 +44,9 @@ const Authentication = () => {
           window.location = '/login'
         })
         .catch(exception => {
-          alert("You haven't been registered, try again later !")
+          alert(
+            "You haven't been registered, try again later and be sure your password strong enough!"
+          )
         })
     }
   }
@@ -54,7 +56,7 @@ const Authentication = () => {
       axios
         .post('../api/rest-auth/logout/', {})
         .then(response => {
-          localStorage.removeItem('token');
+          localStorage.removeItem('token')
           alert('You was logged out')
         })
         .catch(exception => {
@@ -63,7 +65,7 @@ const Authentication = () => {
     }
   }, [])
 
-  return (getUrl() !== 'logout') ? (
+  return getUrl() !== 'logout' ? (
     <div className="auth-page bg-secondary">
       <div className="container page">
         <div className="row">
