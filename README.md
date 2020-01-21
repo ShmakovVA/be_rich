@@ -4,6 +4,21 @@
 Simple money exchange web-service
 ```
 
+# How to up it?
+
+```
+>> make build-init
+
+During building up you'll be asked about superuser credentials
+ - please, provide a username which equal to valid email there 
+   to be able to log in as system account via GUI.
+   (like email=root@g.com and username=root@g.com)
+
+urls for access:
+- http://127.0.0.1:8082 - is service GUI 
+- http://127.0.0.1:8082/admin/ - is Django admin 
+```
+
 # What I have been used:
 
 0. PyCharm IDE

@@ -70,5 +70,5 @@ load-fixtures:
 load-test-fixtures:
 	$(COMPOSE) run --rm my_app ./manage.py loaddata ./backend/transactions/fixtures/test_fixtures.json
 
-build-init: webpack-dep migrations migrate superuser load-fixtures
+build-init: webpack-dep migrations migrate superuser load-fixtures webpack
 	$(COMPOSE) up my_app

@@ -44,7 +44,6 @@ class Account(models.Model):
         else:
             system_wallet = Wallet.objects.get(
                 account__user__is_superuser=True,
-                account__user__username='root',
                 currency=sender_wallet.currency
             )
             try:
