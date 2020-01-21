@@ -13,7 +13,8 @@ const Authentication = () => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    if (getUrl() === 'login') {
+    let url = getUrl()
+    if (url === 'login') {
       axios
         .post('../api/rest-auth/login/', {
           username: email,
@@ -22,13 +23,15 @@ const Authentication = () => {
         .then(response => {
           localStorage.setItem('token', response.data.key)
           alert(`You are logged in now ${email}!`)
+          window.location = '/'
         })
         .catch(exception => {
           setEmail('')
           setPassword('')
           alert('Wrong credentials, try again!')
         })
-    } else {
+    }
+    if (url === 'register') {
       axios
         .post('../api/rest-auth/register/', {
           username: email,
@@ -38,16 +41,29 @@ const Authentication = () => {
         })
         .then(response => {
           alert('You was registered, try to log in now !')
+          window.location = '/login'
         })
         .catch(exception => {
-          alert('You haven\'t been registered, try again later !')
+          alert("You haven't been registered, try again later !")
         })
     }
   }
 
-  useEffect(() => {}, [])
+  useEffect(() => {
+    if (getUrl() === 'logout') {
+      axios
+        .post('../api/rest-auth/logout/', {})
+        .then(response => {
+          localStorage.removeItem('token');
+          alert('You was logged out')
+        })
+        .catch(exception => {
+          alert("You haven't been logged out, try again later !")
+        })
+    }
+  }, [])
 
-  return (
+  return (getUrl() !== 'logout') ? (
     <div className="auth-page bg-secondary">
       <div className="container page">
         <div className="row">
@@ -85,6 +101,8 @@ const Authentication = () => {
         </div>
       </div>
     </div>
+  ) : (
+    <div></div>
   )
 }
 

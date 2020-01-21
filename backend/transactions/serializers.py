@@ -30,7 +30,7 @@ class AccountSerializer(serializers.ModelSerializer):
 class WalletSerializer(serializers.ModelSerializer):
     class Meta:
         model = Wallet
-        fields = ('account', 'money', 'currency_', 'status', 'wallet_id')
+        fields = ('id', 'account', 'money', 'currency_', 'status', 'wallet_id')
 
     account = AccountSerializer()
     status = serializers.SerializerMethodField()

@@ -9,6 +9,7 @@ export default () => {
     <Switch>
       <Route path="/" component={TransactionList} exact />
       <Route path="/login" component={Authentication} />
+      <Route path="/logout" component={Authentication} />
       <Route path="/register" component={Authentication} />
       <Route path="/pay" component={Transaction} />
     </Switch>

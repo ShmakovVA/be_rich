@@ -1,3 +1,4 @@
+import json
 import logging
 
 from django.db.models import Q
@@ -10,6 +11,7 @@ from rest_framework.status import (
 )
 
 from backend.api.paginators import LimitedOffsetPaginator
+from backend.transactions.enums import TransactionStatuses
 from backend.transactions.exceptions import NotEnoughMoneyError
 from backend.transactions.forms import DoTransactionForm
 from backend.transactions.models import Transaction, Wallet, Account
@@ -104,7 +106,7 @@ class WalletListSet(PaginatedModelViewSet):
         return self.queryset
 
 
-# TODO: Make it filterable
+# TODO: Make it filterable via 3 party like  django-rest-framework-filters ?
 class TransactionListSet(PaginatedModelViewSet):
     permission_classes = (permissions.DjangoModelPermissions,)
     queryset = Transaction.objects.all()
@@ -118,10 +120,26 @@ class TransactionListSet(PaginatedModelViewSet):
 
     def get_queryset(self):
         qs = super(TransactionListSet, self).get_queryset()
+        # TODO: add checks/validation for sort_by / filters
         sort_by = self.request.query_params.get('sort_by', None)
+        filters = self.request.query_params.get('filters', None)
 
         if not self.is_superuser:
             qs = self.filter_queryset_by_user(qs)
+
+        if filters is not None:
+            filters = json.loads(filters)
+            if 'status' in filters and not filters['status'].isnumeric():
+                filters['status'] = TransactionStatuses.get(filters['status'])
+            if 'amount' in filters:
+                filters['amount'] = float(filters['amount'])
+            if 'to_wallet' in filters:
+                filters['to_wallet'] = Wallet.objects.filter(
+                    wallet_id=filters['to_wallet']).first()
+            if 'from_wallet' in filters:
+                filters['from_wallet'] = Wallet.objects.filter(
+                    wallet_id=filters['from_wallet']).first()
+            qs = qs.filter(**filters)
 
         if sort_by is not None:
             qs = qs.order_by(sort_by)

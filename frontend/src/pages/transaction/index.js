@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 
@@ -27,14 +27,15 @@ const Transaction = () => {
           alert(`Error : ${response.data.error}`)
         } else {
           alert(`We sent your money to ${to_wallet} !`)
+          window.location = '/'
         }
       })
       .catch(exception => {
-        alert(`Sorry, but something went wrong... Try again later`)
+        alert(
+          `Sorry, but something went wrong... Try again later and check you are logged in`
+        )
       })
   }
-
-  useEffect(() => {}, [])
 
   return (
     <div className="bg-secondary">

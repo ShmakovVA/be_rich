@@ -26,7 +26,12 @@ const TopBar = () => {
           </li>
           <li className="nav-item">
             <NavLink to="/register" className="nav-link">
-              Sign up
+              Register
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink to="/logout" className="nav-link">
+              Log out
             </NavLink>
           </li>
         </ul>
