@@ -2,6 +2,7 @@ import os
 
 from environ import Env
 
+
 env = Env()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -12,7 +13,8 @@ SECRET_KEY = env.str('SECRET_KEY', 'Rq77Yq9xtDjRtHyj')
 
 DEBUG = True
 
-ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=[])
+ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=['localhost',
+                                                          '127.0.0.1'])
 
 SYSTEM_FEE = 0.05  # in percents
 
@@ -124,6 +126,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-STATIC_URL = env.str('DJANGO_STATIC_URL', '/static/')
+STATIC_URL = env.str('DJANGO_STATIC_URL', '/staticfiles/')
 
 STATIC_ROOT = env.str('DJANGO_STATIC_ROOT', os.path.join(BASE_DIR, 'static'))

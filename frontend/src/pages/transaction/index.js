@@ -31,10 +31,10 @@ const Transaction = () => {
         }
       })
       .catch(exception => {
-        alert(
-          `Sorry, but something went wrong... Try again later and check you are logged in`
-        )
-      })
+          let error = exception.toJSON()
+          console.log(error)
+          alert(error.message)
+        })
   }
 
   return (

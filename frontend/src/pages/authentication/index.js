@@ -26,9 +26,11 @@ const Authentication = () => {
           window.location = '/'
         })
         .catch(exception => {
+          let error = exception.toJSON()
           setEmail('')
           setPassword('')
-          alert('Wrong credentials, try again!')
+          console.log(error)
+          alert(error.message)
         })
     }
     if (url === 'register') {
@@ -44,9 +46,9 @@ const Authentication = () => {
           window.location = '/login'
         })
         .catch(exception => {
-          alert(
-            "You haven't been registered, try again later and be sure your password strong enough!"
-          )
+          let error = exception.toJSON()
+          console.log(error)
+          alert(error.message)
         })
     }
   }

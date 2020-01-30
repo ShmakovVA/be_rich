@@ -27,9 +27,6 @@ class DataProvider extends Component {
         params: {sort_by: sort_by, filters: filters}
       })
       .then(response => {
-        if (response.status !== 200) {
-          this.setState({placeholder: 'Something went wrong'})
-        }
         let data = response.data
         if (response.data.results) {
           data = data.results
@@ -50,9 +47,13 @@ class DataProvider extends Component {
             data[i].user = data[i].user.email
           }
         }
-        return data
+        this.setState({data: data, loaded: true})
       })
-      .then(data => this.setState({data: data, loaded: true}))
+      .catch(exception => {
+        let error = exception.toJSON()
+        console.log(error)
+        // alert(error.message)
+      })
   }
 
   componentDidMount() {

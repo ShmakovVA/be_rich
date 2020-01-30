@@ -6,3 +6,4 @@ psycopg2==2.8.4
 django-enumfield==2.0.1
 django-rest-auth==0.9.5
 django-allauth==0.41.0
+gunicorn==20.0.4

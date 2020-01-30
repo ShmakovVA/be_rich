@@ -41,10 +41,10 @@ RUN mkdir -p /srv/app /srv/www/static /srv/www/media
 VOLUME [ "/srv/www" ]
 
 WORKDIR /srv/app
-EXPOSE 8082
 
 # Copy the current directory contents into the container
 COPY ./backend/requirements.txt /requirements.txt
+COPY ./docker/nginx.conf /etc/nginx/nginx.conf
 COPY ./ /srv/app
 
 # Install any needed packages specified in requirements.txt
