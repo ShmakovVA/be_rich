@@ -41,6 +41,11 @@ class AccountManager(models.Manager):
                 wallet = None
             return wallet
 
+    def create(self, *args, **kwargs):
+        instance = super(AccountManager, self).create(*args, **kwargs)
+        instance._init_wallets()
+        return instance
+
 
 class Account(models.Model):
     status = models.PositiveSmallIntegerField(
@@ -54,8 +59,10 @@ class Account(models.Model):
 
     def _init_wallets(self):
         for currency in Currencies:
-            Wallet(currency=currency, account=self).save()
-        self.wallet_set.filter(currency=Currencies.USD).update(amount=100.0)
+            Wallet.objects.create(currency=currency, account=self)
+        usd_wallet = self.wallet_set.filter(currency=Currencies.USD).first()
+        usd_wallet.amount = 100.0
+        usd_wallet.save()
 
     # TODO: might be nice to run it as a task via message broker
     #  (and make model cleaner)
@@ -112,16 +119,6 @@ class Account(models.Model):
                                                  type=transaction_type)
 
         return transaction
-
-    def save(self, force_insert=False, force_update=False, using=None,
-             update_fields=None):
-        if self.pk is None:
-            super(Account, self).save(force_insert=False, force_update=False,
-                                      using=None, update_fields=None)
-            self._init_wallets()
-        else:
-            super(Account, self).save(force_insert=False, force_update=False,
-                                      using=None, update_fields=None)
 
     def __str__(self):
         return f'{self.user} - {self.get_status_display().name}'

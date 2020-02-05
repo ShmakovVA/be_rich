@@ -21,6 +21,12 @@ class WalletManager(models.Manager):
                 raise NotYourWalletError(NotYourWalletError.message)
         return wallet
 
+    def create(self, *args, **kwargs):
+        instance = super(WalletManager, self).create(*args, **kwargs)
+        Wallet.objects.filter(pk=instance.pk).update(
+            wallet_id=instance.generate_wallet_hash())
+        return instance
+
 
 class Wallet(models.Model):
     status = models.PositiveSmallIntegerField(
@@ -36,7 +42,7 @@ class Wallet(models.Model):
 
     objects = WalletManager()
 
-    def wallet_id_generate(self):
+    def generate_wallet_hash(self):
         account_email = self.account.user.email
         wallet_id = self.pk
         secret = settings.SECRET_KEY
@@ -44,7 +50,7 @@ class Wallet(models.Model):
         return sha1(key).hexdigest()
 
     @property
-    def wallet_lookup(self):
+    def masked_wallet_hash(self):
         return f'***{self.wallet_id[20:]} ({self.get_currency_display().name})'
 
     @classmethod
@@ -65,22 +71,11 @@ class Wallet(models.Model):
             wallet.save()
         return wallet
 
-    def save(self, force_insert=False, force_update=False, using=None,
-             update_fields=None):
-        if self.pk is None:
-            super(Wallet, self).save(force_insert=False, force_update=False,
-                                     using=None, update_fields=None)
-            Wallet.objects.filter(pk=self.pk).update(
-                wallet_id=self.wallet_id_generate())
-        else:
-            super(Wallet, self).save(force_insert=False, force_update=False,
-                                     using=None, update_fields=None)
-
     # TODO: should be dropped in case allowing a few wallets in same currency
     class Meta:
         unique_together = ('account', 'currency')
 
     def __str__(self):
         return f'{self.account.user} ({self.amount})' \
-               f'{self.wallet_lookup} ' \
+               f'{self.masked_wallet_hash} ' \
                f'- {self.get_status_display().name}'

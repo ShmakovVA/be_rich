@@ -3,8 +3,8 @@
 
 SHELL := /bin/bash
 
-#CONTEXT ?= docker-compose
-CONTEXT ?= docker-compose-gunicorn-nginx
+CONTEXT ?= docker-compose
+#CONTEXT ?= docker-compose-gunicorn-nginx
 
 COMPOSE = docker-compose -f ./docker/$(CONTEXT).yml -p $(PROJECT)
 PROJECT ?= be_rich
