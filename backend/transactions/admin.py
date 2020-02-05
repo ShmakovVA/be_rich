@@ -7,7 +7,7 @@ from .models import Transaction, Wallet, Account
 class WalletListInline(TabularInline):
     model = Wallet
     extra = 0
-    fields = ('wallet_id', 'currency', 'money', 'status')
+    fields = ('wallet_id', 'currency', 'amount', 'status')
 
 
 class TransactionListInline(TabularInline):
@@ -25,13 +25,13 @@ class AccountAdmin(admin.ModelAdmin):
 
 
 class WalletAdmin(admin.ModelAdmin):
-    fields = ('account', 'status', 'currency', 'money', 'wallet_id')
+    fields = ('account', 'status', 'currency', 'amount', 'wallet_id')
     readonly_fields = ('wallet_id', 'currency',)
     inlines = [TransactionListInline, ]
 
 
 class TransactionAdmin(admin.ModelAdmin):
-    fields = ('from_wallet', 'to_wallet', 'fee', 'amount', 'message', 'status')
+    fields = ('from_wallet', 'to_wallet', 'fee', 'amount', 'message', 'type')
     readonly_fields = fields
 
 

@@ -5,13 +5,13 @@ services:
     build:
       context: ../
       dockerfile: docker/Dockerfile
-    command: django-admin runserver 0.0.0.0:8080
+    command: /bin/sh -c "gunicorn --workers=3 backend.be_rich.wsgi -b 0.0.0.0:8080"
     restart: always
     volumes:
       - ..:/srv/app
       - app-www:/srv/www
-    ports:
-      - "8080:8080"
+    expose:
+      - "8080"
 
     environment:
       DJANGO_DATABASE: "pgsql://richman:pass@postgres/berich"
@@ -24,6 +24,17 @@ services:
 
     depends_on:
       - postgres
+      - nginx
+
+  nginx:
+    image: nginx:latest
+    restart: always
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ../logs:/srv/app/logs
+      - app-www:/srv/www
+    ports:
+      - "1221:80"
 
   postgres:
     build:

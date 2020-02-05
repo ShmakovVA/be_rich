@@ -20,10 +20,10 @@
   },
   "homepage": "https://github.com/shmkvv/be_rich#readme",
   "devDependencies": {
-    "@babel/core": "^7.8.3",
-    "@babel/preset-env": "^7.8.3",
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
     "@babel/preset-react": "^7.8.3",
-    "axios": "^0.19.1",
+    "axios": "^0.19.2",
     "babel-loader": "^8.0.6",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "prettier": "1.19.1",

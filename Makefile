@@ -2,8 +2,11 @@
 .DEFAULT_GOAL := build
 
 SHELL := /bin/bash
+
+#CONTEXT ?= docker-compose
+CONTEXT ?= docker-compose-gunicorn-nginx
+
 COMPOSE = docker-compose -f ./docker/$(CONTEXT).yml -p $(PROJECT)
-CONTEXT ?= docker-compose
 PROJECT ?= be_rich
 
 stop:
@@ -26,11 +29,14 @@ webpack-dep:
 	$(COMPOSE) run --rm my_app npm i axios --save-dev
 	$(COMPOSE) run --rm my_app npm i prettier --save-dev --save-exact
 
-webpack:
+webpack: static
 	$(COMPOSE) run --rm my_app npm run dev
 
 build:
 	$(COMPOSE) build --pull --force-rm my_app
+
+nginx:
+	$(COMPOSE)	up nginx
 
 shell:
 	$(COMPOSE) run --rm my_app ./manage.py shell

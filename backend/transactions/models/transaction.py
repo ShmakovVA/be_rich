@@ -2,9 +2,17 @@ import logging
 
 from django.db import models
 
-from backend.transactions.enums import TransactionStatuses
+from backend.transactions.enums import TransactionTypes
 
 logger = logging.getLogger(__name__)
+
+
+class TransactionManager(models.Manager):
+    def wallet_income(self, wallet_id, exclude_internal=False):
+        return self.filter(to_wallet=wallet_id)
+
+    def wallet_outcome(self, wallet_id, exclude_internal=False):
+        return self.filter(from_wallet=wallet_id)
 
 
 class Transaction(models.Model):
@@ -14,13 +22,15 @@ class Transaction(models.Model):
                                   related_name='transaction_to')
     fee = models.ForeignKey('Transaction', null=True, blank=True,
                             on_delete=models.CASCADE)
-    amount = models.FloatField()
+    amount = models.DecimalField(default=0.0, decimal_places=3, max_digits=16)
     message = models.CharField(max_length=255)
     registered_at = models.DateTimeField(auto_now_add=True)
-    status = models.PositiveSmallIntegerField(
-        default=TransactionStatuses.FINISHED,
-        choices=TransactionStatuses.choices()
+    type = models.PositiveSmallIntegerField(
+        default=TransactionTypes.INTERNAL,
+        choices=TransactionTypes.choices()
     )
+
+    objects = TransactionManager()
 
     # TODO: would be nice to roll it back
     def roll_back(self):
