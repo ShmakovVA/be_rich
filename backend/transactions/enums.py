@@ -1,10 +1,10 @@
 from django_enumfield import enum
 
 
-class TransactionStatuses(enum.Enum):
-    PENDING = 0
-    FINISHED = 1
-    ERROR = 2
+class TransactionTypes(enum.Enum):
+    INTERNAL = 0
+    EXTERNAL = 1
+    FEE = 2
 
 
 class AccountStatuses(enum.Enum):

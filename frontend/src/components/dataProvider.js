@@ -33,8 +33,16 @@ class DataProvider extends Component {
         }
         if (this.props.endpoint.includes('transactions')) {
           for (var i = 0; i < data.length; i++) {
-            data[i].from_wallet = data[i].from_wallet.wallet_id
-            data[i].to_wallet = data[i].to_wallet.wallet_id
+            data[i].from_wallet =
+              '***' +
+              data[i].from_wallet.wallet_id.substr(
+                data[i].from_wallet.wallet_id.length - 5
+              )
+            data[i].to_wallet =
+              '***' +
+              data[i].to_wallet.wallet_id.substr(
+                data[i].to_wallet.wallet_id.length - 5
+              )
           }
         }
         if (this.props.endpoint.includes('wallets')) {
