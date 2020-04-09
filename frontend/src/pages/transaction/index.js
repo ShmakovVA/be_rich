@@ -31,10 +31,10 @@ const Transaction = () => {
         }
       })
       .catch(exception => {
-          let error = exception.toJSON()
-          console.log(error)
-          alert(error.message)
-        })
+        let error = exception.toJSON()
+        console.log(error)
+        alert(error.message)
+      })
   }
 
   return (

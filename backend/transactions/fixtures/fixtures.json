@@ -6,7 +6,7 @@
       "status": 0,
       "account": 1,
       "currency": 0,
-      "money": 100.0,
+      "amount": 100.0,
       "wallet_id": "28ca0e6e5e5f257e48df4bf0bcc53482c8c6dc03"
     }
   },
@@ -17,7 +17,7 @@
       "status": 0,
       "account": 1,
       "currency": 1,
-      "money": 0.0,
+      "amount": 0.0,
       "wallet_id": "b2d1a266ff729c38062c410eee0cee8c9ccfecb8"
     }
   },
@@ -28,7 +28,7 @@
       "status": 0,
       "account": 1,
       "currency": 2,
-      "money": 0.0,
+      "amount": 0.0,
       "wallet_id": "ff71df8429ee055933796b7c7fe1602f0f94b8db"
     }
   },

@@ -11,8 +11,8 @@ from rest_framework.status import (
 )
 
 from backend.api.paginators import LimitedOffsetPaginator
-from backend.transactions.enums import TransactionStatuses
-from backend.transactions.exceptions import NotEnoughMoneyError
+from backend.transactions.enums import TransactionTypes
+from backend.transactions.exceptions import TransactionError
 from backend.transactions.forms import DoTransactionForm
 from backend.transactions.models import Transaction, Wallet, Account
 from backend.transactions.serializers import (
@@ -81,7 +81,7 @@ class AccountListSet(viewsets.ModelViewSet):
                 amount=amount,
                 message=message
             )
-        except NotEnoughMoneyError as e:
+        except TransactionError as e:
             logger.error(f'Transaction was aborted: {e}')
             return Response({'error': e.message}, status=HTTP_200_OK)
         except Exception as e:
@@ -130,7 +130,7 @@ class TransactionListSet(PaginatedModelViewSet):
         if filters is not None:
             filters = json.loads(filters)
             if 'status' in filters and not filters['status'].isnumeric():
-                filters['status'] = TransactionStatuses.get(filters['status'])
+                filters['type'] = TransactionTypes.get(filters['status'])
             if 'amount' in filters:
                 filters['amount'] = float(filters['amount'])
             if 'to_wallet' in filters:
